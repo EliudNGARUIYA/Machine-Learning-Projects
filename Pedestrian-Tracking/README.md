@@ -1,50 +1,19 @@
 # Passenger Tracking
 
-The Open Model Zoo demo applications are console applications that demonstrate how you can use the Inference Engine in your applications to solve specific use-cases.
-
-
 - [Pedestrian Tracker C++ ]- Application for pedestrian tracking scenario.
 
 ## Media Files Available for Demos
 
 To run the demo applications, you can use images and videos from the media files collection available at https://github.com/intel-iot-devkit/sample-videos.
 
-## Demos that Support Pre-Trained Models
+## Build the Applications
 
-> **NOTE:** Inference Engine HDDL and FPGA plugins are available in [proprietary](https://software.intel.com/en-us/openvino-toolkit) distribution only.
-
-You can download the [pre-trained models](../models/intel/index.md) using the OpenVINO [Model Downloader](../tools/downloader/README.md) or from [https://download.01.org/opencv/](https://download.01.org/opencv/).
-The table below shows the correlation between models, demos, and supported plugins. The plugins names are exactly as they are passed to the demos with `-d` option. The correlation between the plugins and supported devices see in the [Supported Devices](https://docs.openvinotoolkit.org/latest/_docs_IE_DG_supported_plugins_Supported_Devices.html) section.
-
-> **NOTE:** **MYRIAD** below stands for Intel® Movidius™ Neural Compute Stick, Intel® Neural Compute Stick 2, and Intel® Vision Accelerator Design with Intel® Movidius™ Vision Processing Units.
-
-| Model                                            | Demos supported on the model                                                                                 | CPU       | GPU       | MYRIAD/HDDL | HETERO:FPGA,CPU |
-|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------|-----------|-----------|-------------|-----------------|
-      Supported     |                 |
-| gaze-estimation-adas-0002                        | [Gaze Estimation Demo](./gaze_estimation_demo/README.md)                              | Supported | Supported | Supported | Supported |
-| head-pose-estimation-adas-0001                   | [Gaze Estimation Demo](./gaze_estimation_demo/README.md)                              | Supported | Supported | Supported | Supported |
-| facial-landmarks-35-adas-0002                    | [Gaze Estimation Demo](./gaze_estimation_demo/README.md)                              | Supported | Supported | Supported | Supported |
-| pedestrian-and-vehicle-detector-adas-0001        | any demo that supports SSD\*-based models, above                                                               | Supported | Supported | Supported   | Supported       |
-| pedestrian-detection-adas-0002                   | any demo that supports SSD\*-based models, above                                                               | Supported | Supported | Supported   | Supported       |
-| pedestrian-detection-adas-binary-0001            | any demo that supports SSD\*-based models, above                                                               | Supported | Supported |             |                 |
-| person-detection-retail-0002                     | any demo that supports SSD\*-based models, above                                                               | Supported | Supported | Supported   | Supported       |
-| person-detection-retail-0013                     | any demo that supports SSD\*-based models, above                                                               | Supported | Supported | Supported   | Supported       |
-| road-segmentation-adas-0001                      | any demo that supports SSD\*-based models, above                                                               | Supported | Supported | Supported   | Supported       |
-| vehicle-detection-adas-binary-0001               | any demo that supports SSD\*-based models, above                                                               | Supported | Supported |             |                 |
-| vehicle-detection-adas-0002                      | any demo that supports SSD\*-based models, above                                                               | Supported | Supported | Supported   | Supported       |
-| yolo-v2-tiny-vehicle-detection-0001              | [Object Detection for YOLO V3 Python\* Demo](./python_demos/object_detection_demo_yolov3_async/README.md) | Supported |           |             |                 |
-
-
-Notice that the FPGA support comes through a [heterogeneous execution](https://docs.openvinotoolkit.org/latest/_docs_IE_DG_supported_plugins_HETERO.html), for example, when the post-processing is happening on the CPU.
-
-## Build the Demo Applications
-
-To be able to build demos you need to source _InferenceEngine_ and _OpenCV_ environment from a binary package which is available as [proprietary](https://software.intel.com/en-us/openvino-toolkit) distribution.
+To be able to build the app you need to source _InferenceEngine_ and _OpenCV_ environment from a binary package which is available as [proprietary](https://software.intel.com/en-us/openvino-toolkit) distribution.
 Please run the following command before the demos build (assuming that the binary package was installed to `<INSTALL_DIR>`):
 ```sh
 source <INSTALL_DIR>/deployment_tools/bin/setupvars.sh
 ```
-You can also build demos manually using Inference Engine built from the [openvino](https://github.com/openvinotoolkit/openvino) repo. In this case please set `InferenceEngine_DIR` environment variable to a folder containing `InferenceEngineConfig.cmake` and `ngraph_DIR` to a folder containing `ngraphConfig.cmake` in a build folder. Please also set the `OpenCV_DIR` to point to the OpenCV package to use. The same OpenCV version should be used both for Inference Engine and demos build. Alternatively these values can be provided via command line while running `cmake`. See [CMake's search procedure](https://cmake.org/cmake/help/latest/command/find_package.html#search-procedure).
+You can also build apps manually using Inference Engine built from the [openvino](https://github.com/openvinotoolkit/openvino) repo. In this case please set `InferenceEngine_DIR` environment variable to a folder containing `InferenceEngineConfig.cmake` and `ngraph_DIR` to a folder containing `ngraphConfig.cmake` in a build folder. Please also set the `OpenCV_DIR` to point to the OpenCV package to use. The same OpenCV version should be used both for Inference Engine and demos build. Alternatively these values can be provided via command line while running `cmake`. See [CMake's search procedure](https://cmake.org/cmake/help/latest/command/find_package.html#search-procedure).
 Please refer to the Inference Engine <a href="https://github.com/openvinotoolkit/openvino/blob/master/build-instruction.md">build instructions</a>
 for details. Please also add path to built Inference Engine libraries to `LD_LIBRARY_PATH` (Linux*) or `PATH` (Windows*) variable before building the demos.
 
@@ -56,13 +25,13 @@ The officially supported Linux* build environment is the following:
 * GCC* 5.4.0 (for Ubuntu* 16.04) or GCC* 4.8.5 (for CentOS* 7.4)
 * CMake* version 2.8 or higher.
 
-To build the demo applications for Linux, go to the directory with the `build_demos.sh` script and
+To build the applications for Linux, go to the directory with the `build_demos.sh` script and
 run it:
 ```sh
 build_demos.sh
 ```
 
-You can also build the demo applications manually:
+You can also build the applications manually:
 
 1. Navigate to a directory that you have write access to and create a demos build directory. This example uses a directory named `build`:
 ```sh
@@ -131,9 +100,9 @@ For example:
 cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_PYTHON=ON <open_model_zoo>/demos
 ```
 
-## Get Ready for Running the Demo Applications
+## Get Ready for Running the Applications
 
-### Get Ready for Running the Demo Applications on Linux*
+### Get Ready for Running the Applications on Linux*
 
 Before running compiled binary files, make sure your application can find the Inference Engine and OpenCV libraries.
 If you use a [proprietary](https://software.intel.com/en-us/openvino-toolkit) distribution to build demos,
@@ -168,11 +137,7 @@ the built demo applications:
 export PYTHONPATH="$PYTHONPATH:<bin_dir>/lib"
 ```
 
-You are ready to run the demo applications. To learn about how to run a particular
-demo, read the demo documentation by clicking the demo name in the demo
-list above.
-
-### Get Ready for Running the Demo Applications on Windows*
+### Get Ready for Running the Applications on Windows*
 
 Before running compiled binary files, make sure your application can find the Inference Engine and OpenCV libraries.
 Optionally download OpenCV community FFmpeg plugin. There is a downloader script in the OpenVINO package: `<INSTALL_DIR>\opencv\ffmpeg-download.ps1`.
