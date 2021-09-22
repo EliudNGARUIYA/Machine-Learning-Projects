@@ -1,6 +1,5 @@
-# Pedestrian Tracker C++ Demo
-
-This demo showcases Pedestrian Tracking scenario: it reads frames from an input video sequence, detects pedestrians in the frames, and builds trajectories of movement of the pedestrians in
+# Pedestrian Tracker C++ Application
+This app showcases Pedestrian Tracking scenario: it reads frames from an input video sequence, detects pedestrians in the frames, and builds trajectories of movement of the pedestrians in
 a frame-by-frame manner.
 You can use a set of the following pre-trained models with the demo:
 * _person-detection-retail-0013_, which is the primary detection network for finding pedestrians
